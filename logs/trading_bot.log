@@ -1,0 +1,39 @@
+2026-07-08 17:10:49,294 | INFO | trading_bot | API Request | POST /fapi/v1/order | params={'symbol': 'BTCUSDT', 'side': 'SELL', 'type': 'LIMIT', 'quantity': '0.001', 'price': '120000', 'timeInForce': 'GTC', 'timestamp': 1783510849292, 'signature': 'b3c58b6aa3e6ec3754ae1f1ebe20c390346364745588bf19a15f2c6a0f5aa508'}
+2026-07-08 17:10:50,538 | INFO | trading_bot | API Response | status=400 | data={'code': -1021, 'msg': "Timestamp for this request was 1000ms ahead of the server's time."}
+2026-07-08 17:10:50,539 | ERROR | trading_bot | Order failed
+Traceback (most recent call last):
+  File "C:\Users\acer\binance-futures-trading-bot\cli.py", line 60, in main
+    response = order_service.create_order(
+        symbol=args.symbol,
+    ...<3 lines>...
+        price=args.price
+    )
+  File "C:\Users\acer\binance-futures-trading-bot\bot\orders.py", line 16, in create_order
+    return self.client.place_order(
+           ~~~~~~~~~~~~~~~~~~~~~~~^
+        symbol=symbol,
+        ^^^^^^^^^^^^^^
+    ...<3 lines>...
+        price=price
+        ^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\acer\binance-futures-trading-bot\bot\client.py", line 80, in place_order
+    return self._request(
+           ~~~~~~~~~~~~~^
+        method="POST",
+        ^^^^^^^^^^^^^^
+    ...<2 lines>...
+        signed=True
+        ^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\acer\binance-futures-trading-bot\bot\client.py", line 60, in _request
+    raise Exception(f"Binance API Error: {data}")
+Exception: Binance API Error: {'code': -1021, 'msg': "Timestamp for this request was 1000ms ahead of the server's time."}
+2026-07-08 17:14:01,745 | INFO | trading_bot | Time sync completed | offset=-61820 ms
+2026-07-08 17:14:01,745 | INFO | trading_bot | API Request | POST /fapi/v1/order | params={'symbol': 'BTCUSDT', 'side': 'BUY', 'type': 'MARKET', 'quantity': '0.001', 'timestamp': 1783510979925, 'recvWindow': 10000, 'signature': '09a60bba0bcea2a7654cd47a1a860f8e046a26479055c83114102b027db5c722'}
+2026-07-08 17:14:02,073 | INFO | trading_bot | API Response | status=200 | data={'orderId': 20095970581, 'symbol': 'BTCUSDT', 'status': 'NEW', 'clientOrderId': '6HF0BHPKINsR8iTWWQETWY', 'price': '0.00', 'origQty': '0.0010', 'executedQty': '0.0000', 'cumQty': '0.0000', 'timeInForce': 'GTC', 'type': 'MARKET', 'reduceOnly': False, 'closePosition': False, 'side': 'BUY', 'positionSide': 'BOTH', 'stopPrice': '0.00', 'workingType': 'CONTRACT_PRICE', 'priceProtect': False, 'origType': 'MARKET', 'priceMatch': 'NONE', 'selfTradePreventionMode': 'EXPIRE_MAKER', 'goodTillDate': 0, 'updateTime': 1783510980115}
+2026-07-08 17:15:24,195 | INFO | trading_bot | Time sync completed | offset=-61933 ms
+2026-07-08 17:15:24,197 | INFO | trading_bot | API Request | POST /fapi/v1/order | params={'symbol': 'BTCUSDT', 'side': 'SELL', 'type': 'LIMIT', 'quantity': '0.001', 'price': '120000', 'timeInForce': 'GTC', 'timestamp': 1783511062263, 'recvWindow': 10000, 'signature': '245455e07256ccc794d264febb6d69b3a5064af56d2ecffe64f45790b4e5987f'}
+2026-07-08 17:15:24,486 | INFO | trading_bot | API Response | status=200 | data={'orderId': 20096237596, 'symbol': 'BTCUSDT', 'status': 'NEW', 'clientOrderId': 'cScFb44NGWX8dME7aaKxVy', 'price': '120000.00', 'origQty': '0.0010', 'executedQty': '0.0000', 'cumQty': '0.0000', 'timeInForce': 'GTC', 'type': 'LIMIT', 'reduceOnly': False, 'closePosition': False, 'side': 'SELL', 'positionSide': 'BOTH', 'stopPrice': '0.00', 'workingType': 'CONTRACT_PRICE', 'priceProtect': False, 'origType': 'LIMIT', 'priceMatch': 'NONE', 'selfTradePreventionMode': 'EXPIRE_MAKER', 'goodTillDate': 0, 'updateTime': 1783511062631}
